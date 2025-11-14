@@ -1,3 +1,9 @@
+# Model-generated files
+mnist_npy/
+mnist_test/
+mnist_train/
+mnist_cnn.pth
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
