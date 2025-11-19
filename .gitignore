@@ -1,3 +1,9 @@
+# Simulation files
+work/
+transcript
+*.wlf
+modelsim.ini
+
 # Model-generated files
 mnist_npy/
 mnist_test/
