@@ -150,7 +150,7 @@ module pe #(
             WAIT_S : begin
                 psum_c = 0;
                 count_c = count_r + 1;
-                if (count_r == G_KERNEL_SIZE-1) begin
+                if (count_r == G_KERNEL_SIZE) begin
                     state_c = ACUM_S;
                     count_c = 0;
                 end
