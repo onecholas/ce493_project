@@ -1,4 +1,4 @@
-module buf #(
+module buffer #(
     parameter G_BUF_ADDR_WIDTH = 10,
     parameter G_BUF_DATA_WIDTH = 8) 
 (   
