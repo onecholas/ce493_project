@@ -173,7 +173,7 @@ module buf_array #(
                     weight_state_c = DONE_S;
                 end
                 // Shift in weight
-                weight_shift_reg_c = {weight_shift_reg_r[G_KERNEL_SIZE:0], weight_data_x};
+                weight_shift_reg_c = {weight_shift_reg_r[G_KERNEL_SIZE-1:0], weight_data_x};
             end
             DONE_S : begin
                 if (weight_state_r == DONE_S && ifmap_state_r == DONE_S) begin

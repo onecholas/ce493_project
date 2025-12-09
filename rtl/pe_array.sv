@@ -58,6 +58,11 @@ module pe_array #(
     logic [0:G_ARRAY_WIDTH-1][0:G_ARRAY_HEIGHT]                   psum_vld_x;
     logic [0:G_ARRAY_WIDTH-1][0:G_ARRAY_HEIGHT][DATA_WIDTH_C-1:0] psum_data_x;
 
+    logic ifmap_vld_o_signal;
+    logic ifmap_row_o_signal;
+    logic [DATA_WIDTH_C-1:0] ifmap_data_o_signal;
+
+
     genvar r, c;
     generate
         // Connect Ifmap inputs to the left edge of the PE array
@@ -79,9 +84,16 @@ module pe_array #(
             assign psum_data_x[c][0] = 0;
         end
 
+        
+
         // Instantiate PE Grid
         for (r = 0; r < G_ARRAY_HEIGHT; r++) begin : rows
             for (c = 0; c < G_ARRAY_WIDTH; c++) begin : cols
+            
+                assign ifmap_vld_o_signal = (r > 0) ? ifmap_vld_x[c+1][r-1] : ifmap_vld_x[c+1][r];
+                assign ifmap_row_o_signal = (r > 0) ? ifmap_row_x[c+1][r-1] : ifmap_row_x[c+1][r];
+                assign ifmap_data_o_signal = (r > 0) ? ifmap_data_x[c+1][r-1] : ifmap_data_x[c+1][r];
+
                 pe #(
                     .G_BUF_ADDR_WIDTH (G_BUF_ADDR_WIDTH),   // Remove in future commit
                     .G_BUF_DATA_WIDTH (G_BUF_DATA_WIDTH),   // Remove in future commit
@@ -99,9 +111,9 @@ module pe_array #(
                     .weight_vld_i (weight_vld_i),
                     .weight_i     (weight_i[r]),
                     .weight_clr_i (weight_clr_i),
-                    .ifmap_vld_o  (ifmap_vld_x[c+1][r-1]),
-                    .ifmap_row_o  (ifmap_row_x[c+1][r-1]),
-                    .ifmap_o      (ifmap_data_x[c+1][r-1]),
+                    .ifmap_vld_o  (ifmap_vld_o_signal),   // consider edge case if r==0
+                    .ifmap_row_o  (ifmap_row_o_signal),
+                    .ifmap_o      (ifmap_data_o_signal),
                     .psum_vld_i   (psum_vld_x[c][r]),
                     .psum_i       (psum_data_x[c][r]),
                     .psum_vld_o   (psum_vld_x[c][r+1]),

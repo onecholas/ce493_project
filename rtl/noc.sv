@@ -69,7 +69,7 @@ module noc #(
 
     // State Machine signals
     typedef enum {IDLE_S, WEIGHTS_S, CALC_S} state_t;
-    state_t state_r = IDLE_S;
+    state_t state_r;
     state_t state_c;
     logic [10:0] count_r;
     logic [10:0] count_c;
