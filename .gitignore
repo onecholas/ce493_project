@@ -219,4 +219,6 @@ marimo/_lsp/
 __marimo__/
 
 # Genus Synthesis
-synthesis/
+synthesis_2/
+backend/
+innovus_commands.txt
