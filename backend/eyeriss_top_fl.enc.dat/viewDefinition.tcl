@@ -4,8 +4,13 @@ set ::IMEX::libVar ${::IMEX::dataVar}/libs
 
 create_library_set -name lib\
    -timing\
+<<<<<<< HEAD
     [list ${::IMEX::libVar}/mmmc/NangateOpenCellLibrary_typical.lib]
 create_op_cond -name op -library_file ${::IMEX::libVar}/mmmc/NangateOpenCellLibrary_typical.lib -P 10 -V 10 -T 10
+=======
+    [list ${::IMEX::libVar}/lib/typ/NangateOpenCellLibrary_typical.lib]
+create_op_cond -name op -library_file ${::IMEX::libVar}/lib/typ/NangateOpenCellLibrary_typical.lib -P 10 -V 10 -T 10
+>>>>>>> e1f77d9 (genus tcl)
 create_rc_corner -name rc\
    -preRoute_res 1\
    -postRoute_res 1\

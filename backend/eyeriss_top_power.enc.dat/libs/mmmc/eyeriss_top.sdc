@@ -39,6 +39,7 @@ set_max_transition 0.07 [current_design]
 # set_attr use_scan_seqs_for_non_dft false
 
 # Add external drivers for ifmap_data_i inputs
+<<<<<<< HEAD
 set_driving_cell -cell BUF_X1 [get_ports {ifmap_data_i[*]}]
 set_input_transition 0.1 [get_ports {ifmap_data_i[*]}]
 
@@ -72,6 +73,41 @@ set_input_transition 0.1 [get_ports {weight_wr_addr_i[*]}]
 
 # Add external drivers for weight_wr_en_i input
 set_driving_cell -cell BUF_X1 [get_ports weight_wr_en_i]
+=======
+set_driving_cell -lib_cell BUF_X1 [get_ports {ifmap_data_i[*]}]
+set_input_transition 0.1 [get_ports {ifmap_data_i[*]}]
+
+# Add external drivers for weight_data_i inputs
+set_driving_cell -lib_cell BUF_X1 [get_ports {weight_data_i[*]}]
+set_input_transition 0.1 [get_ports {weight_data_i[*]}]
+
+# Add external drivers for ifmap_wr_addr_i inputs
+set_driving_cell -lib_cell BUF_X1 [get_ports {ifmap_wr_addr_i[*]}]
+set_input_transition 0.1 [get_ports {ifmap_wr_addr_i[*]}]
+
+# Add external drivers for ifmap_wr_en_i input
+set_driving_cell -lib_cell BUF_X1 [get_ports ifmap_wr_en_i]
+set_input_transition 0.1 [get_ports ifmap_wr_en_i]
+
+# Add external drivers for psum_rd_en_i inputs
+set_driving_cell -lib_cell BUF_X1 [get_ports {psum_rd_en_i[*]}]
+set_input_transition 0.1 [get_ports {psum_rd_en_i[*]}]
+
+# Add external drivers for rst_i input
+set_driving_cell -lib_cell BUF_X1 [get_ports rst_i]
+set_input_transition 0.1 [get_ports rst_i]
+
+# Add external drivers for start_i input
+set_driving_cell -lib_cell BUF_X1 [get_ports start_i]
+set_input_transition 0.1 [get_ports start_i]
+
+# Add external drivers for weight_wr_addr_i inputs
+set_driving_cell -lib_cell BUF_X1 [get_ports {weight_wr_addr_i[*]}]
+set_input_transition 0.1 [get_ports {weight_wr_addr_i[*]}]
+
+# Add external drivers for weight_wr_en_i input
+set_driving_cell -lib_cell BUF_X1 [get_ports weight_wr_en_i]
+>>>>>>> e1f77d9 (genus tcl)
 set_input_transition 0.1 [get_ports weight_wr_en_i]
 
 # Remove redundant timing exception (if applicable)
