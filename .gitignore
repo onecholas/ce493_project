@@ -20,6 +20,11 @@ __pycache__/
 
 # Intermediate files
 .nfs*
+*.tstamp
+fv/
+*.fp
+*.fp.spr
+*.dat
 
 # Distribution / packaging
 .Python
