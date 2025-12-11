@@ -1,4 +1,4 @@
-create_clock -name clk_i -period 1.0 -waveform { 0 0.5 } [get_ports clk_i]
+create_clock -name clk_i -period 1.2 -waveform { 0 0.6 } [get_ports clk_i]
 
 
 # ------------------------- Input constraints ----------------------------------

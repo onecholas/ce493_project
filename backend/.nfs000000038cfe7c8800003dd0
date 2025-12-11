@@ -1,0 +1,667 @@
+#######################################################
+#                                                     
+#  Innovus Command Logging File                     
+#  Created on Wed Dec 10 12:23:16 2025                
+#                                                     
+#######################################################
+
+#@(#)CDS: Innovus v16.20-p002_1 (64bit) 11/08/2016 11:31 (Linux 2.6.18-194.el5)
+#@(#)CDS: NanoRoute 16.20-p002_1 NR161103-1425/16_20-UB (database version 2.30, 354.6.1) {superthreading v1.34}
+#@(#)CDS: AAE 16.20-p004 (64bit) 11/08/2016 (Linux 2.6.18-194.el5)
+#@(#)CDS: CTE 16.20-p008_1 () Oct 29 2016 08:26:57 ( )
+#@(#)CDS: SYNTECH 16.20-p001_1 () Oct 27 2016 11:33:00 ( )
+#@(#)CDS: CPE v16.20-p011
+#@(#)CDS: IQRC/TQRC 15.2.5-s803 (64bit) Tue Sep 13 18:23:58 PDT 2016 (Linux 2.6.18-194.el5)
+
+set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+suppressMessage ENCEXT-2799
+getDrawView
+loadWorkspace -name Physical
+win
+set init_gnd_net VSS
+set init_lef_file /vol/ece303/genus_tutorial/NangateOpenCellLibrary.lef
+set init_design_settop 0
+set init_verilog ../synth_3/eyeriss_top_syn.v
+set init_mmmc_file eyeriss_top.view
+set init_pwr_net VDD
+init_design
+setDesignMode -process 45
+fit
+setDrawView fplan
+getIoFlowFlag
+floorPlan -r 1.0 0.63 2 2 2 2
+uiSetTool select
+getIoFlowFlag
+globalNetConnect VDD -type pgpin -pin VDD -inst *
+globalNetConnect VSS -type pgpin -pin VSS -inst *
+globalNetConnect VDD -type tiehi
+globalNetConnect VSS -type tielo
+getPinAssignMode -pinEditInBatch -quiet
+fit
+setPinAssignMode -pinEditInBatch true
+editPin -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Left -layer 3 -spreadType center -spacing 0.42 -pin {clk_i {ifmap_data_i[0]} {ifmap_data_i[1]} {ifmap_data_i[2]} {ifmap_data_i[3]} {ifmap_data_i[4]} {ifmap_data_i[5]} {ifmap_data_i[6]} {ifmap_data_i[7]} {ifmap_data_i[8]} {ifmap_data_i[9]} {ifmap_data_i[10]} {ifmap_data_i[11]} {ifmap_data_i[12]} {ifmap_data_i[13]} {ifmap_data_i[14]} {ifmap_data_i[15]} {ifmap_wr_addr_i[0]} {ifmap_wr_addr_i[1]} {ifmap_wr_addr_i[2]} {ifmap_wr_addr_i[3]} {ifmap_wr_addr_i[4]} {ifmap_wr_addr_i[5]} {ifmap_wr_addr_i[6]} {ifmap_wr_addr_i[7]} {ifmap_wr_addr_i[8]} {ifmap_wr_addr_i[9]} ifmap_wr_en_i}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Left -layer 3 -spreadType center -spacing 0.42 -pin {{psum_rd_en_i[0]} {psum_rd_en_i[1]} {psum_rd_en_i[2]} {psum_rd_en_i[3]} {psum_rd_en_i[4]} {psum_rd_en_i[5]} rst_i start_i}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Left -layer 3 -spreadType center -spacing 0.42 -pin {{weight_data_i[0]} {weight_data_i[1]} {weight_data_i[2]} {weight_data_i[3]} {weight_data_i[4]} {weight_data_i[5]} {weight_data_i[6]} {weight_data_i[7]} {weight_data_i[8]} {weight_data_i[9]} {weight_data_i[10]} {weight_data_i[11]} {weight_data_i[12]} {weight_data_i[13]} {weight_data_i[14]} {weight_data_i[15]} {weight_wr_addr_i[0]} {weight_wr_addr_i[1]} {weight_wr_addr_i[2]} {weight_wr_addr_i[3]} {weight_wr_addr_i[4]} weight_wr_en_i}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -pinWidth 0.07 -pinDepth 0.07 -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Left -layer 3 -spreadType center -spacing 0.42 -pin {clk_i {ifmap_data_i[0]} {ifmap_data_i[1]} {ifmap_data_i[2]} {ifmap_data_i[3]} {ifmap_data_i[4]} {ifmap_data_i[5]} {ifmap_data_i[6]} {ifmap_data_i[7]} {ifmap_data_i[8]} {ifmap_data_i[9]} {ifmap_data_i[10]} {ifmap_data_i[11]} {ifmap_data_i[12]} {ifmap_data_i[13]} {ifmap_data_i[14]} {ifmap_data_i[15]} {ifmap_wr_addr_i[0]} {ifmap_wr_addr_i[1]} {ifmap_wr_addr_i[2]} {ifmap_wr_addr_i[3]} {ifmap_wr_addr_i[4]} {ifmap_wr_addr_i[5]} {ifmap_wr_addr_i[6]} {ifmap_wr_addr_i[7]} {ifmap_wr_addr_i[8]} {ifmap_wr_addr_i[9]} ifmap_wr_en_i {psum_rd_en_i[0]} {psum_rd_en_i[1]} {psum_rd_en_i[2]} {psum_rd_en_i[3]} {psum_rd_en_i[4]} {psum_rd_en_i[5]} rst_i start_i {weight_data_i[0]} {weight_data_i[1]} {weight_data_i[2]} {weight_data_i[3]} {weight_data_i[4]} {weight_data_i[5]} {weight_data_i[6]} {weight_data_i[7]} {weight_data_i[8]} {weight_data_i[9]} {weight_data_i[10]} {weight_data_i[11]} {weight_data_i[12]} {weight_data_i[13]} {weight_data_i[14]} {weight_data_i[15]} {weight_wr_addr_i[0]} {weight_wr_addr_i[1]} {weight_wr_addr_i[2]} {weight_wr_addr_i[3]} {weight_wr_addr_i[4]} weight_wr_en_i}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -pinWidth 0.07 -pinDepth 0.07 -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Left -layer 3 -spreadType center -spacing 1.0 -pin {clk_i {ifmap_data_i[0]} {ifmap_data_i[1]} {ifmap_data_i[2]} {ifmap_data_i[3]} {ifmap_data_i[4]} {ifmap_data_i[5]} {ifmap_data_i[6]} {ifmap_data_i[7]} {ifmap_data_i[8]} {ifmap_data_i[9]} {ifmap_data_i[10]} {ifmap_data_i[11]} {ifmap_data_i[12]} {ifmap_data_i[13]} {ifmap_data_i[14]} {ifmap_data_i[15]} {ifmap_wr_addr_i[0]} {ifmap_wr_addr_i[1]} {ifmap_wr_addr_i[2]} {ifmap_wr_addr_i[3]} {ifmap_wr_addr_i[4]} {ifmap_wr_addr_i[5]} {ifmap_wr_addr_i[6]} {ifmap_wr_addr_i[7]} {ifmap_wr_addr_i[8]} {ifmap_wr_addr_i[9]} ifmap_wr_en_i {psum_rd_en_i[0]} {psum_rd_en_i[1]} {psum_rd_en_i[2]} {psum_rd_en_i[3]} {psum_rd_en_i[4]} {psum_rd_en_i[5]} rst_i start_i {weight_data_i[0]} {weight_data_i[1]} {weight_data_i[2]} {weight_data_i[3]} {weight_data_i[4]} {weight_data_i[5]} {weight_data_i[6]} {weight_data_i[7]} {weight_data_i[8]} {weight_data_i[9]} {weight_data_i[10]} {weight_data_i[11]} {weight_data_i[12]} {weight_data_i[13]} {weight_data_i[14]} {weight_data_i[15]} {weight_wr_addr_i[0]} {weight_wr_addr_i[1]} {weight_wr_addr_i[2]} {weight_wr_addr_i[3]} {weight_wr_addr_i[4]} weight_wr_en_i}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -pinWidth 0.07 -pinDepth 0.07 -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Left -layer 3 -spreadType center -spacing 5 -pin {clk_i {ifmap_data_i[0]} {ifmap_data_i[1]} {ifmap_data_i[2]} {ifmap_data_i[3]} {ifmap_data_i[4]} {ifmap_data_i[5]} {ifmap_data_i[6]} {ifmap_data_i[7]} {ifmap_data_i[8]} {ifmap_data_i[9]} {ifmap_data_i[10]} {ifmap_data_i[11]} {ifmap_data_i[12]} {ifmap_data_i[13]} {ifmap_data_i[14]} {ifmap_data_i[15]} {ifmap_wr_addr_i[0]} {ifmap_wr_addr_i[1]} {ifmap_wr_addr_i[2]} {ifmap_wr_addr_i[3]} {ifmap_wr_addr_i[4]} {ifmap_wr_addr_i[5]} {ifmap_wr_addr_i[6]} {ifmap_wr_addr_i[7]} {ifmap_wr_addr_i[8]} {ifmap_wr_addr_i[9]} ifmap_wr_en_i {psum_rd_en_i[0]} {psum_rd_en_i[1]} {psum_rd_en_i[2]} {psum_rd_en_i[3]} {psum_rd_en_i[4]} {psum_rd_en_i[5]} rst_i start_i {weight_data_i[0]} {weight_data_i[1]} {weight_data_i[2]} {weight_data_i[3]} {weight_data_i[4]} {weight_data_i[5]} {weight_data_i[6]} {weight_data_i[7]} {weight_data_i[8]} {weight_data_i[9]} {weight_data_i[10]} {weight_data_i[11]} {weight_data_i[12]} {weight_data_i[13]} {weight_data_i[14]} {weight_data_i[15]} {weight_wr_addr_i[0]} {weight_wr_addr_i[1]} {weight_wr_addr_i[2]} {weight_wr_addr_i[3]} {weight_wr_addr_i[4]} weight_wr_en_i}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -pinWidth 0.07 -pinDepth 0.07 -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Top -layer 3 -spreadType center -spacing 10 -pin {}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -pinWidth 0.07 -pinDepth 0.07 -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Left -layer 3 -spreadType center -spacing 10 -pin {clk_i {ifmap_data_i[0]} {ifmap_data_i[1]} {ifmap_data_i[2]} {ifmap_data_i[3]} {ifmap_data_i[4]} {ifmap_data_i[5]} {ifmap_data_i[6]} {ifmap_data_i[7]} {ifmap_data_i[8]} {ifmap_data_i[9]} {ifmap_data_i[10]} {ifmap_data_i[11]} {ifmap_data_i[12]} {ifmap_data_i[13]} {ifmap_data_i[14]} {ifmap_data_i[15]} {ifmap_wr_addr_i[0]} {ifmap_wr_addr_i[1]} {ifmap_wr_addr_i[2]} {ifmap_wr_addr_i[3]} {ifmap_wr_addr_i[4]} {ifmap_wr_addr_i[5]} {ifmap_wr_addr_i[6]} {ifmap_wr_addr_i[7]} {ifmap_wr_addr_i[8]} {ifmap_wr_addr_i[9]} ifmap_wr_en_i {psum_rd_en_i[0]} {psum_rd_en_i[1]} {psum_rd_en_i[2]} {psum_rd_en_i[3]} {psum_rd_en_i[4]} {psum_rd_en_i[5]} rst_i start_i {weight_data_i[0]} {weight_data_i[1]} {weight_data_i[2]} {weight_data_i[3]} {weight_data_i[4]} {weight_data_i[5]} {weight_data_i[6]} {weight_data_i[7]} {weight_data_i[8]} {weight_data_i[9]} {weight_data_i[10]} {weight_data_i[11]} {weight_data_i[12]} {weight_data_i[13]} {weight_data_i[14]} {weight_data_i[15]} {weight_wr_addr_i[0]} {weight_wr_addr_i[1]} {weight_wr_addr_i[2]} {weight_wr_addr_i[3]} {weight_wr_addr_i[4]} weight_wr_en_i}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -pinWidth 0.07 -pinDepth 0.07 -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Left -layer 3 -spreadType center -spacing 15 -pin {clk_i {ifmap_data_i[0]} {ifmap_data_i[1]} {ifmap_data_i[2]} {ifmap_data_i[3]} {ifmap_data_i[4]} {ifmap_data_i[5]} {ifmap_data_i[6]} {ifmap_data_i[7]} {ifmap_data_i[8]} {ifmap_data_i[9]} {ifmap_data_i[10]} {ifmap_data_i[11]} {ifmap_data_i[12]} {ifmap_data_i[13]} {ifmap_data_i[14]} {ifmap_data_i[15]} {ifmap_wr_addr_i[0]} {ifmap_wr_addr_i[1]} {ifmap_wr_addr_i[2]} {ifmap_wr_addr_i[3]} {ifmap_wr_addr_i[4]} {ifmap_wr_addr_i[5]} {ifmap_wr_addr_i[6]} {ifmap_wr_addr_i[7]} {ifmap_wr_addr_i[8]} {ifmap_wr_addr_i[9]} ifmap_wr_en_i {psum_rd_en_i[0]} {psum_rd_en_i[1]} {psum_rd_en_i[2]} {psum_rd_en_i[3]} {psum_rd_en_i[4]} {psum_rd_en_i[5]} rst_i start_i {weight_data_i[0]} {weight_data_i[1]} {weight_data_i[2]} {weight_data_i[3]} {weight_data_i[4]} {weight_data_i[5]} {weight_data_i[6]} {weight_data_i[7]} {weight_data_i[8]} {weight_data_i[9]} {weight_data_i[10]} {weight_data_i[11]} {weight_data_i[12]} {weight_data_i[13]} {weight_data_i[14]} {weight_data_i[15]} {weight_wr_addr_i[0]} {weight_wr_addr_i[1]} {weight_wr_addr_i[2]} {weight_wr_addr_i[3]} {weight_wr_addr_i[4]} weight_wr_en_i}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Right -layer 3 -spreadType center -spacing -15.12 -pin {{psum_empty_o[0]} {psum_empty_o[1]} {psum_empty_o[2]} {psum_empty_o[3]} {psum_empty_o[4]} {psum_empty_o[5]} {psum_o[0][0]} {psum_o[0][1]} {psum_o[0][2]} {psum_o[0][3]} {psum_o[0][4]} {psum_o[0][5]} {psum_o[0][6]} {psum_o[0][7]} {psum_o[0][8]} {psum_o[0][9]} {psum_o[0][10]} {psum_o[0][11]} {psum_o[0][12]} {psum_o[0][13]} {psum_o[0][14]} {psum_o[0][15]} {psum_o[1][0]} {psum_o[1][1]} {psum_o[1][2]} {psum_o[1][3]} {psum_o[1][4]} {psum_o[1][5]} {psum_o[1][6]} {psum_o[1][7]} {psum_o[1][8]} {psum_o[1][9]} {psum_o[1][10]} {psum_o[1][11]} {psum_o[1][12]} {psum_o[1][13]} {psum_o[1][14]} {psum_o[1][15]} {psum_o[2][0]} {psum_o[2][1]} {psum_o[2][2]} {psum_o[2][3]} {psum_o[2][4]} {psum_o[2][5]} {psum_o[2][6]} {psum_o[2][7]} {psum_o[2][8]} {psum_o[2][9]} {psum_o[2][10]} {psum_o[2][11]} {psum_o[2][12]} {psum_o[2][13]} {psum_o[2][14]} {psum_o[2][15]} {psum_o[3][0]} {psum_o[3][1]} {psum_o[3][2]} {psum_o[3][3]} {psum_o[3][4]} {psum_o[3][5]} {psum_o[3][6]} {psum_o[3][7]} {psum_o[3][8]} {psum_o[3][9]} {psum_o[3][10]} {psum_o[3][11]} {psum_o[3][12]} {psum_o[3][13]} {psum_o[3][14]} {psum_o[3][15]} {psum_o[4][0]} {psum_o[4][1]} {psum_o[4][2]} {psum_o[4][3]} {psum_o[4][4]} {psum_o[4][5]} {psum_o[4][6]} {psum_o[4][7]} {psum_o[4][8]} {psum_o[4][9]} {psum_o[4][10]} {psum_o[4][11]} {psum_o[4][12]} {psum_o[4][13]} {psum_o[4][14]} {psum_o[4][15]} {psum_o[5][0]} {psum_o[5][1]} {psum_o[5][2]} {psum_o[5][3]} {psum_o[5][4]} {psum_o[5][5]} {psum_o[5][6]} {psum_o[5][7]} {psum_o[5][8]} {psum_o[5][9]} {psum_o[5][10]} {psum_o[5][11]} {psum_o[5][12]} {psum_o[5][13]} {psum_o[5][14]} {psum_o[5][15]}}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Right -layer 3 -spreadType center -spacing -15.12 -pin {{psum_empty_o[0]} {psum_empty_o[1]} {psum_empty_o[2]} {psum_empty_o[3]} {psum_empty_o[4]} {psum_empty_o[5]} {psum_o[0][0]} {psum_o[0][1]} {psum_o[0][2]} {psum_o[0][3]} {psum_o[0][4]} {psum_o[0][5]} {psum_o[0][6]} {psum_o[0][7]} {psum_o[0][8]} {psum_o[0][9]} {psum_o[0][10]} {psum_o[0][11]} {psum_o[0][12]} {psum_o[0][13]} {psum_o[0][14]} {psum_o[0][15]} {psum_o[1][0]} {psum_o[1][1]} {psum_o[1][2]} {psum_o[1][3]} {psum_o[1][4]} {psum_o[1][5]} {psum_o[1][6]} {psum_o[1][7]} {psum_o[1][8]} {psum_o[1][9]} {psum_o[1][10]} {psum_o[1][11]} {psum_o[1][12]} {psum_o[1][13]} {psum_o[1][14]} {psum_o[1][15]} {psum_o[2][0]} {psum_o[2][1]} {psum_o[2][2]} {psum_o[2][3]} {psum_o[2][4]} {psum_o[2][5]} {psum_o[2][6]} {psum_o[2][7]} {psum_o[2][8]} {psum_o[2][9]} {psum_o[2][10]} {psum_o[2][11]} {psum_o[2][12]} {psum_o[2][13]} {psum_o[2][14]} {psum_o[2][15]} {psum_o[3][0]} {psum_o[3][1]} {psum_o[3][2]} {psum_o[3][3]} {psum_o[3][4]} {psum_o[3][5]} {psum_o[3][6]} {psum_o[3][7]} {psum_o[3][8]} {psum_o[3][9]} {psum_o[3][10]} {psum_o[3][11]} {psum_o[3][12]} {psum_o[3][13]} {psum_o[3][14]} {psum_o[3][15]} {psum_o[4][0]} {psum_o[4][1]} {psum_o[4][2]} {psum_o[4][3]} {psum_o[4][4]} {psum_o[4][5]} {psum_o[4][6]} {psum_o[4][7]} {psum_o[4][8]} {psum_o[4][9]} {psum_o[4][10]} {psum_o[4][11]} {psum_o[4][12]} {psum_o[4][13]} {psum_o[4][14]} {psum_o[4][15]} {psum_o[5][0]} {psum_o[5][1]} {psum_o[5][2]} {psum_o[5][3]} {psum_o[5][4]} {psum_o[5][5]} {psum_o[5][6]} {psum_o[5][7]} {psum_o[5][8]} {psum_o[5][9]} {psum_o[5][10]} {psum_o[5][11]} {psum_o[5][12]} {psum_o[5][13]} {psum_o[5][14]} {psum_o[5][15]}}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Right -layer 3 -spreadType center -spacing 15 -pin {{psum_empty_o[0]} {psum_empty_o[1]} {psum_empty_o[2]} {psum_empty_o[3]} {psum_empty_o[4]} {psum_empty_o[5]} {psum_o[0][0]} {psum_o[0][1]} {psum_o[0][2]} {psum_o[0][3]} {psum_o[0][4]} {psum_o[0][5]} {psum_o[0][6]} {psum_o[0][7]} {psum_o[0][8]} {psum_o[0][9]} {psum_o[0][10]} {psum_o[0][11]} {psum_o[0][12]} {psum_o[0][13]} {psum_o[0][14]} {psum_o[0][15]} {psum_o[1][0]} {psum_o[1][1]} {psum_o[1][2]} {psum_o[1][3]} {psum_o[1][4]} {psum_o[1][5]} {psum_o[1][6]} {psum_o[1][7]} {psum_o[1][8]} {psum_o[1][9]} {psum_o[1][10]} {psum_o[1][11]} {psum_o[1][12]} {psum_o[1][13]} {psum_o[1][14]} {psum_o[1][15]} {psum_o[2][0]} {psum_o[2][1]} {psum_o[2][2]} {psum_o[2][3]} {psum_o[2][4]} {psum_o[2][5]} {psum_o[2][6]} {psum_o[2][7]} {psum_o[2][8]} {psum_o[2][9]} {psum_o[2][10]} {psum_o[2][11]} {psum_o[2][12]} {psum_o[2][13]} {psum_o[2][14]} {psum_o[2][15]} {psum_o[3][0]} {psum_o[3][1]} {psum_o[3][2]} {psum_o[3][3]} {psum_o[3][4]} {psum_o[3][5]} {psum_o[3][6]} {psum_o[3][7]} {psum_o[3][8]} {psum_o[3][9]} {psum_o[3][10]} {psum_o[3][11]} {psum_o[3][12]} {psum_o[3][13]} {psum_o[3][14]} {psum_o[3][15]} {psum_o[4][0]} {psum_o[4][1]} {psum_o[4][2]} {psum_o[4][3]} {psum_o[4][4]} {psum_o[4][5]} {psum_o[4][6]} {psum_o[4][7]} {psum_o[4][8]} {psum_o[4][9]} {psum_o[4][10]} {psum_o[4][11]} {psum_o[4][12]} {psum_o[4][13]} {psum_o[4][14]} {psum_o[4][15]} {psum_o[5][0]} {psum_o[5][1]} {psum_o[5][2]} {psum_o[5][3]} {psum_o[5][4]} {psum_o[5][5]} {psum_o[5][6]} {psum_o[5][7]} {psum_o[5][8]} {psum_o[5][9]} {psum_o[5][10]} {psum_o[5][11]} {psum_o[5][12]} {psum_o[5][13]} {psum_o[5][14]} {psum_o[5][15]}}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Right -layer 3 -spreadType center -spacing 10 -pin {{psum_empty_o[0]} {psum_empty_o[1]} {psum_empty_o[2]} {psum_empty_o[3]} {psum_empty_o[4]} {psum_empty_o[5]} {psum_o[0][0]} {psum_o[0][1]} {psum_o[0][2]} {psum_o[0][3]} {psum_o[0][4]} {psum_o[0][5]} {psum_o[0][6]} {psum_o[0][7]} {psum_o[0][8]} {psum_o[0][9]} {psum_o[0][10]} {psum_o[0][11]} {psum_o[0][12]} {psum_o[0][13]} {psum_o[0][14]} {psum_o[0][15]} {psum_o[1][0]} {psum_o[1][1]} {psum_o[1][2]} {psum_o[1][3]} {psum_o[1][4]} {psum_o[1][5]} {psum_o[1][6]} {psum_o[1][7]} {psum_o[1][8]} {psum_o[1][9]} {psum_o[1][10]} {psum_o[1][11]} {psum_o[1][12]} {psum_o[1][13]} {psum_o[1][14]} {psum_o[1][15]} {psum_o[2][0]} {psum_o[2][1]} {psum_o[2][2]} {psum_o[2][3]} {psum_o[2][4]} {psum_o[2][5]} {psum_o[2][6]} {psum_o[2][7]} {psum_o[2][8]} {psum_o[2][9]} {psum_o[2][10]} {psum_o[2][11]} {psum_o[2][12]} {psum_o[2][13]} {psum_o[2][14]} {psum_o[2][15]} {psum_o[3][0]} {psum_o[3][1]} {psum_o[3][2]} {psum_o[3][3]} {psum_o[3][4]} {psum_o[3][5]} {psum_o[3][6]} {psum_o[3][7]} {psum_o[3][8]} {psum_o[3][9]} {psum_o[3][10]} {psum_o[3][11]} {psum_o[3][12]} {psum_o[3][13]} {psum_o[3][14]} {psum_o[3][15]} {psum_o[4][0]} {psum_o[4][1]} {psum_o[4][2]} {psum_o[4][3]} {psum_o[4][4]} {psum_o[4][5]} {psum_o[4][6]} {psum_o[4][7]} {psum_o[4][8]} {psum_o[4][9]} {psum_o[4][10]} {psum_o[4][11]} {psum_o[4][12]} {psum_o[4][13]} {psum_o[4][14]} {psum_o[4][15]} {psum_o[5][0]} {psum_o[5][1]} {psum_o[5][2]} {psum_o[5][3]} {psum_o[5][4]} {psum_o[5][5]} {psum_o[5][6]} {psum_o[5][7]} {psum_o[5][8]} {psum_o[5][9]} {psum_o[5][10]} {psum_o[5][11]} {psum_o[5][12]} {psum_o[5][13]} {psum_o[5][14]} {psum_o[5][15]}}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Right -layer 3 -spreadType center -spacing 5 -pin {{psum_empty_o[0]} {psum_empty_o[1]} {psum_empty_o[2]} {psum_empty_o[3]} {psum_empty_o[4]} {psum_empty_o[5]} {psum_o[0][0]} {psum_o[0][1]} {psum_o[0][2]} {psum_o[0][3]} {psum_o[0][4]} {psum_o[0][5]} {psum_o[0][6]} {psum_o[0][7]} {psum_o[0][8]} {psum_o[0][9]} {psum_o[0][10]} {psum_o[0][11]} {psum_o[0][12]} {psum_o[0][13]} {psum_o[0][14]} {psum_o[0][15]} {psum_o[1][0]} {psum_o[1][1]} {psum_o[1][2]} {psum_o[1][3]} {psum_o[1][4]} {psum_o[1][5]} {psum_o[1][6]} {psum_o[1][7]} {psum_o[1][8]} {psum_o[1][9]} {psum_o[1][10]} {psum_o[1][11]} {psum_o[1][12]} {psum_o[1][13]} {psum_o[1][14]} {psum_o[1][15]} {psum_o[2][0]} {psum_o[2][1]} {psum_o[2][2]} {psum_o[2][3]} {psum_o[2][4]} {psum_o[2][5]} {psum_o[2][6]} {psum_o[2][7]} {psum_o[2][8]} {psum_o[2][9]} {psum_o[2][10]} {psum_o[2][11]} {psum_o[2][12]} {psum_o[2][13]} {psum_o[2][14]} {psum_o[2][15]} {psum_o[3][0]} {psum_o[3][1]} {psum_o[3][2]} {psum_o[3][3]} {psum_o[3][4]} {psum_o[3][5]} {psum_o[3][6]} {psum_o[3][7]} {psum_o[3][8]} {psum_o[3][9]} {psum_o[3][10]} {psum_o[3][11]} {psum_o[3][12]} {psum_o[3][13]} {psum_o[3][14]} {psum_o[3][15]} {psum_o[4][0]} {psum_o[4][1]} {psum_o[4][2]} {psum_o[4][3]} {psum_o[4][4]} {psum_o[4][5]} {psum_o[4][6]} {psum_o[4][7]} {psum_o[4][8]} {psum_o[4][9]} {psum_o[4][10]} {psum_o[4][11]} {psum_o[4][12]} {psum_o[4][13]} {psum_o[4][14]} {psum_o[4][15]} {psum_o[5][0]} {psum_o[5][1]} {psum_o[5][2]} {psum_o[5][3]} {psum_o[5][4]} {psum_o[5][5]} {psum_o[5][6]} {psum_o[5][7]} {psum_o[5][8]} {psum_o[5][9]} {psum_o[5][10]} {psum_o[5][11]} {psum_o[5][12]} {psum_o[5][13]} {psum_o[5][14]} {psum_o[5][15]}}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -pinWidth 0.07 -pinDepth 0.07 -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Right -layer 3 -spreadType center -spacing 7 -pin {{psum_empty_o[0]} {psum_empty_o[1]} {psum_empty_o[2]} {psum_empty_o[3]} {psum_empty_o[4]} {psum_empty_o[5]} {psum_o[0][0]} {psum_o[0][1]} {psum_o[0][2]} {psum_o[0][3]} {psum_o[0][4]} {psum_o[0][5]} {psum_o[0][6]} {psum_o[0][7]} {psum_o[0][8]} {psum_o[0][9]} {psum_o[0][10]} {psum_o[0][11]} {psum_o[0][12]} {psum_o[0][13]} {psum_o[0][14]} {psum_o[0][15]} {psum_o[1][0]} {psum_o[1][1]} {psum_o[1][2]} {psum_o[1][3]} {psum_o[1][4]} {psum_o[1][5]} {psum_o[1][6]} {psum_o[1][7]} {psum_o[1][8]} {psum_o[1][9]} {psum_o[1][10]} {psum_o[1][11]} {psum_o[1][12]} {psum_o[1][13]} {psum_o[1][14]} {psum_o[1][15]} {psum_o[2][0]} {psum_o[2][1]} {psum_o[2][2]} {psum_o[2][3]} {psum_o[2][4]} {psum_o[2][5]} {psum_o[2][6]} {psum_o[2][7]} {psum_o[2][8]} {psum_o[2][9]} {psum_o[2][10]} {psum_o[2][11]} {psum_o[2][12]} {psum_o[2][13]} {psum_o[2][14]} {psum_o[2][15]} {psum_o[3][0]} {psum_o[3][1]} {psum_o[3][2]} {psum_o[3][3]} {psum_o[3][4]} {psum_o[3][5]} {psum_o[3][6]} {psum_o[3][7]} {psum_o[3][8]} {psum_o[3][9]} {psum_o[3][10]} {psum_o[3][11]} {psum_o[3][12]} {psum_o[3][13]} {psum_o[3][14]} {psum_o[3][15]} {psum_o[4][0]} {psum_o[4][1]} {psum_o[4][2]} {psum_o[4][3]} {psum_o[4][4]} {psum_o[4][5]} {psum_o[4][6]} {psum_o[4][7]} {psum_o[4][8]} {psum_o[4][9]} {psum_o[4][10]} {psum_o[4][11]} {psum_o[4][12]} {psum_o[4][13]} {psum_o[4][14]} {psum_o[4][15]} {psum_o[5][0]} {psum_o[5][1]} {psum_o[5][2]} {psum_o[5][3]} {psum_o[5][4]} {psum_o[5][5]} {psum_o[5][6]} {psum_o[5][7]} {psum_o[5][8]} {psum_o[5][9]} {psum_o[5][10]} {psum_o[5][11]} {psum_o[5][12]} {psum_o[5][13]} {psum_o[5][14]} {psum_o[5][15]}}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -pinWidth 0.07 -pinDepth 0.07 -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Right -layer 3 -spreadType center -spacing 7.0 -pin {{psum_empty_o[0]} {psum_empty_o[1]} {psum_empty_o[2]} {psum_empty_o[3]} {psum_empty_o[4]} {psum_empty_o[5]} {psum_o[0][0]} {psum_o[0][1]} {psum_o[0][2]} {psum_o[0][3]} {psum_o[0][4]} {psum_o[0][5]} {psum_o[0][6]} {psum_o[0][7]} {psum_o[0][8]} {psum_o[0][9]} {psum_o[0][10]} {psum_o[0][11]} {psum_o[0][12]} {psum_o[0][13]} {psum_o[0][14]} {psum_o[0][15]} {psum_o[1][0]} {psum_o[1][1]} {psum_o[1][2]} {psum_o[1][3]} {psum_o[1][4]} {psum_o[1][5]} {psum_o[1][6]} {psum_o[1][7]} {psum_o[1][8]} {psum_o[1][9]} {psum_o[1][10]} {psum_o[1][11]} {psum_o[1][12]} {psum_o[1][13]} {psum_o[1][14]} {psum_o[1][15]} {psum_o[2][0]} {psum_o[2][1]} {psum_o[2][2]} {psum_o[2][3]} {psum_o[2][4]} {psum_o[2][5]} {psum_o[2][6]} {psum_o[2][7]} {psum_o[2][8]} {psum_o[2][9]} {psum_o[2][10]} {psum_o[2][11]} {psum_o[2][12]} {psum_o[2][13]} {psum_o[2][14]} {psum_o[2][15]} {psum_o[3][0]} {psum_o[3][1]} {psum_o[3][2]} {psum_o[3][3]} {psum_o[3][4]} {psum_o[3][5]} {psum_o[3][6]} {psum_o[3][7]} {psum_o[3][8]} {psum_o[3][9]} {psum_o[3][10]} {psum_o[3][11]} {psum_o[3][12]} {psum_o[3][13]} {psum_o[3][14]} {psum_o[3][15]} {psum_o[4][0]} {psum_o[4][1]} {psum_o[4][2]} {psum_o[4][3]} {psum_o[4][4]} {psum_o[4][5]} {psum_o[4][6]} {psum_o[4][7]} {psum_o[4][8]} {psum_o[4][9]} {psum_o[4][10]} {psum_o[4][11]} {psum_o[4][12]} {psum_o[4][13]} {psum_o[4][14]} {psum_o[4][15]} {psum_o[5][0]} {psum_o[5][1]} {psum_o[5][2]} {psum_o[5][3]} {psum_o[5][4]} {psum_o[5][5]} {psum_o[5][6]} {psum_o[5][7]} {psum_o[5][8]} {psum_o[5][9]} {psum_o[5][10]} {psum_o[5][11]} {psum_o[5][12]} {psum_o[5][13]} {psum_o[5][14]} {psum_o[5][15]}}
+setPinAssignMode -pinEditInBatch false
+getPinAssignMode -pinEditInBatch -quiet
+setPinAssignMode -pinEditInBatch true
+editPin -pinWidth 0.07 -pinDepth 0.07 -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Right -layer 3 -spreadType center -spacing 8 -pin {{psum_empty_o[0]} {psum_empty_o[1]} {psum_empty_o[2]} {psum_empty_o[3]} {psum_empty_o[4]} {psum_empty_o[5]} {psum_o[0][0]} {psum_o[0][1]} {psum_o[0][2]} {psum_o[0][3]} {psum_o[0][4]} {psum_o[0][5]} {psum_o[0][6]} {psum_o[0][7]} {psum_o[0][8]} {psum_o[0][9]} {psum_o[0][10]} {psum_o[0][11]} {psum_o[0][12]} {psum_o[0][13]} {psum_o[0][14]} {psum_o[0][15]} {psum_o[1][0]} {psum_o[1][1]} {psum_o[1][2]} {psum_o[1][3]} {psum_o[1][4]} {psum_o[1][5]} {psum_o[1][6]} {psum_o[1][7]} {psum_o[1][8]} {psum_o[1][9]} {psum_o[1][10]} {psum_o[1][11]} {psum_o[1][12]} {psum_o[1][13]} {psum_o[1][14]} {psum_o[1][15]} {psum_o[2][0]} {psum_o[2][1]} {psum_o[2][2]} {psum_o[2][3]} {psum_o[2][4]} {psum_o[2][5]} {psum_o[2][6]} {psum_o[2][7]} {psum_o[2][8]} {psum_o[2][9]} {psum_o[2][10]} {psum_o[2][11]} {psum_o[2][12]} {psum_o[2][13]} {psum_o[2][14]} {psum_o[2][15]} {psum_o[3][0]} {psum_o[3][1]} {psum_o[3][2]} {psum_o[3][3]} {psum_o[3][4]} {psum_o[3][5]} {psum_o[3][6]} {psum_o[3][7]} {psum_o[3][8]} {psum_o[3][9]} {psum_o[3][10]} {psum_o[3][11]} {psum_o[3][12]} {psum_o[3][13]} {psum_o[3][14]} {psum_o[3][15]} {psum_o[4][0]} {psum_o[4][1]} {psum_o[4][2]} {psum_o[4][3]} {psum_o[4][4]} {psum_o[4][5]} {psum_o[4][6]} {psum_o[4][7]} {psum_o[4][8]} {psum_o[4][9]} {psum_o[4][10]} {psum_o[4][11]} {psum_o[4][12]} {psum_o[4][13]} {psum_o[4][14]} {psum_o[4][15]} {psum_o[5][0]} {psum_o[5][1]} {psum_o[5][2]} {psum_o[5][3]} {psum_o[5][4]} {psum_o[5][5]} {psum_o[5][6]} {psum_o[5][7]} {psum_o[5][8]} {psum_o[5][9]} {psum_o[5][10]} {psum_o[5][11]} {psum_o[5][12]} {psum_o[5][13]} {psum_o[5][14]} {psum_o[5][15]}}
+setPinAssignMode -pinEditInBatch true
+editPin -pinWidth 0.07 -pinDepth 0.07 -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Right -layer 3 -spreadType center -spacing 9 -pin {{psum_empty_o[0]} {psum_empty_o[1]} {psum_empty_o[2]} {psum_empty_o[3]} {psum_empty_o[4]} {psum_empty_o[5]} {psum_o[0][0]} {psum_o[0][1]} {psum_o[0][2]} {psum_o[0][3]} {psum_o[0][4]} {psum_o[0][5]} {psum_o[0][6]} {psum_o[0][7]} {psum_o[0][8]} {psum_o[0][9]} {psum_o[0][10]} {psum_o[0][11]} {psum_o[0][12]} {psum_o[0][13]} {psum_o[0][14]} {psum_o[0][15]} {psum_o[1][0]} {psum_o[1][1]} {psum_o[1][2]} {psum_o[1][3]} {psum_o[1][4]} {psum_o[1][5]} {psum_o[1][6]} {psum_o[1][7]} {psum_o[1][8]} {psum_o[1][9]} {psum_o[1][10]} {psum_o[1][11]} {psum_o[1][12]} {psum_o[1][13]} {psum_o[1][14]} {psum_o[1][15]} {psum_o[2][0]} {psum_o[2][1]} {psum_o[2][2]} {psum_o[2][3]} {psum_o[2][4]} {psum_o[2][5]} {psum_o[2][6]} {psum_o[2][7]} {psum_o[2][8]} {psum_o[2][9]} {psum_o[2][10]} {psum_o[2][11]} {psum_o[2][12]} {psum_o[2][13]} {psum_o[2][14]} {psum_o[2][15]} {psum_o[3][0]} {psum_o[3][1]} {psum_o[3][2]} {psum_o[3][3]} {psum_o[3][4]} {psum_o[3][5]} {psum_o[3][6]} {psum_o[3][7]} {psum_o[3][8]} {psum_o[3][9]} {psum_o[3][10]} {psum_o[3][11]} {psum_o[3][12]} {psum_o[3][13]} {psum_o[3][14]} {psum_o[3][15]} {psum_o[4][0]} {psum_o[4][1]} {psum_o[4][2]} {psum_o[4][3]} {psum_o[4][4]} {psum_o[4][5]} {psum_o[4][6]} {psum_o[4][7]} {psum_o[4][8]} {psum_o[4][9]} {psum_o[4][10]} {psum_o[4][11]} {psum_o[4][12]} {psum_o[4][13]} {psum_o[4][14]} {psum_o[4][15]} {psum_o[5][0]} {psum_o[5][1]} {psum_o[5][2]} {psum_o[5][3]} {psum_o[5][4]} {psum_o[5][5]} {psum_o[5][6]} {psum_o[5][7]} {psum_o[5][8]} {psum_o[5][9]} {psum_o[5][10]} {psum_o[5][11]} {psum_o[5][12]} {psum_o[5][13]} {psum_o[5][14]} {psum_o[5][15]}}
+setPinAssignMode -pinEditInBatch true
+editPin -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Right -layer 1 -spreadType center -spacing 8 -pin {{psum_empty_o[0]} {psum_empty_o[1]} {psum_empty_o[2]} {psum_empty_o[3]} {psum_empty_o[4]} {psum_empty_o[5]} {psum_o[0][0]} {psum_o[0][1]} {psum_o[0][2]} {psum_o[0][3]} {psum_o[0][4]} {psum_o[0][5]} {psum_o[0][6]} {psum_o[0][7]} {psum_o[0][8]} {psum_o[0][9]} {psum_o[0][10]} {psum_o[0][11]} {psum_o[0][12]} {psum_o[0][13]} {psum_o[0][14]} {psum_o[0][15]} {psum_o[1][0]} {psum_o[1][1]} {psum_o[1][2]} {psum_o[1][3]} {psum_o[1][4]} {psum_o[1][5]} {psum_o[1][6]} {psum_o[1][7]} {psum_o[1][8]} {psum_o[1][9]} {psum_o[1][10]} {psum_o[1][11]} {psum_o[1][12]} {psum_o[1][13]} {psum_o[1][14]} {psum_o[1][15]} {psum_o[2][0]} {psum_o[2][1]} {psum_o[2][2]} {psum_o[2][3]} {psum_o[2][4]} {psum_o[2][5]} {psum_o[2][6]} {psum_o[2][7]} {psum_o[2][8]} {psum_o[2][9]} {psum_o[2][10]} {psum_o[2][11]} {psum_o[2][12]} {psum_o[2][13]} {psum_o[2][14]} {psum_o[2][15]} {psum_o[3][0]} {psum_o[3][1]} {psum_o[3][2]} {psum_o[3][3]} {psum_o[3][4]} {psum_o[3][5]} {psum_o[3][6]} {psum_o[3][7]} {psum_o[3][8]} {psum_o[3][9]} {psum_o[3][10]} {psum_o[3][11]} {psum_o[3][12]} {psum_o[3][13]} {psum_o[3][14]} {psum_o[3][15]} {psum_o[4][0]} {psum_o[4][1]} {psum_o[4][2]} {psum_o[4][3]} {psum_o[4][4]} {psum_o[4][5]} {psum_o[4][6]} {psum_o[4][7]} {psum_o[4][8]} {psum_o[4][9]} {psum_o[4][10]} {psum_o[4][11]} {psum_o[4][12]} {psum_o[4][13]} {psum_o[4][14]} {psum_o[4][15]} {psum_o[5][0]} {psum_o[5][1]} {psum_o[5][2]} {psum_o[5][3]} {psum_o[5][4]} {psum_o[5][5]} {psum_o[5][6]} {psum_o[5][7]} {psum_o[5][8]} {psum_o[5][9]} {psum_o[5][10]} {psum_o[5][11]} {psum_o[5][12]} {psum_o[5][13]} {psum_o[5][14]} {psum_o[5][15]}}
+setPinAssignMode -pinEditInBatch true
+editPin -use POWER -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Top -layer 4 -spreadType center -spacing 0.14 -pin VDD
+setPinAssignMode -pinEditInBatch true
+editPin -use GROUND -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Bottom -layer 4 -spreadType center -spacing 0.14 -pin VSS
+setPinAssignMode -pinEditInBatch true
+editPin -use GROUND -pinWidth 0.14 -pinDepth 0.14 -fixOverlap 1 -unit MICRON -spreadDirection counterclockwise -side Bottom -layer 4 -spreadType center -spacing 0.28 -pin VSS
+setPinAssignMode -pinEditInBatch false
+saveDesign eyeriss_top_fl.enc
+addRing -nets {VSS VDD} -type core_rings -follow io -layer {top metal5 bottom metal5 left metal4 right metal4} -width {top 1 bottom 1 left 1 right 1} -spacing {top 1 bottom 1 left 1 right 1} -offset {top 0 bottom 0 left 0 right 0} -center 0 -extend_corner {} -threshold 0 -jog_distance 0 -snap_wire_center_to_grid None
+addStripe -block_ring_top_layer_limit metal5 -max_same_layer_jog_length 1.6 -padcore_ring_bottom_layer_limit metal3 -set_to_set_distance 5 -stacked_via_top_layer metal10 -padcore_ring_top_layer_limit metal5 -spacing 1 -xleft_offset 1 -merge_stripes_value 0.095 -layer metal4 -block_ring_bottom_layer_limit metal3 -width 1 -nets {VSS VDD } -stacked_via_bottom_layer metal1
+sroute -connect { blockPin padPin padRing corePin floatingStripe } -layerChangeRange { 1 10 } -blockPinTarget { nearestRingStripe nearestTarget } -padPinPortConnect { allPort oneGeom } -checkAlignedSecondaryPin 1 -blockPin useLef -allowJogging 1 -crossoverViaBottomLayer 1 -allowLayerChange 1 -targetViaTopLayer 10 -crossoverViaTopLayer 10 -targetViaBottomLayer 1 -nets { VDD VSS }
+saveDesign eyeriss_top_power.enc
+editPowerVia -skip_via_on_pin Standardcell -bottom_layer metal1 -add_vias 1 -top_layer metal8
+saveDesign eyeriss_top_power.enc
+setEndCapMode -reset
+setEndCapMode -boundary_tap false
+setPlaceMode -reset
+setPlaceMode -congEffort auto -timingDriven 1 -modulePlan 1 -clkGateAware 1 -powerDriven 0 -ignoreScan 1 -reorderScan 1 -ignoreSpare 0 -placeIOPins 0 -moduleAwareSpare 0 -preserveRouting 0 -rmAffectedRouting 0 -checkRoute 0 -swapEEQ 0
+setPlaceMode -fp false
+placeDesign
+timeDesign -preCTS -numPaths 200
+optDesign -preCTS -numPaths 200
+setDrawView place
+saveDesign eyeriss_top_pl.enc
+timeDesign -preCTS -numPaths 200
+optDesign -preCTS -numPaths 200
+setDrawView place
+saveDesign eyeriss_top_pl.enc
+set_ccopt_property update_io_latency false
+clockDesign -specFile Clock.ctstch -outDir clock_report
+checkPlace eyeriss_top.checkPlace
+timeDesign -postCTS -numPaths 200
+timeDesign -postCTS -hold -numPaths 200
+optDesign -postCTS -numPaths 200
+optDesign -postCTS -hold -numPaths 200
+timeDesign -postCTS -hold -numPaths 200
+timeDesign -postCTS -numPaths 200
+saveDesign eyeriss_top_clk.enc
+getFillerMode -quiet
+addFillerGap 0.6
+addFiller -cell FILLCELL_X1 FILLCELL_X2 FILLCELL_X4 FILLCELL_X8 -prefix FILLER -markFixed
+saveDesign eyeriss_top_powerroute_clk_filler.enc
+setAnalysisMode -cppr none -clockGatingCheck true -timeBorrowing true -useOutputPinCap true -sequentialConstProp false -timingSelfLoopsNoSkew false -enableMultipleDriveNet true -clkSrcPath true -warn true -usefulSkew false -analysisType onChipVariation -log true
+setNanoRouteMode -quiet -drouteFixAntenna false
+setNanoRouteMode -quiet -routeTopRoutingLayer default
+setNanoRouteMode -quiet -routeBottomRoutingLayer default
+setNanoRouteMode -quiet -drouteEndIteration default
+setNanoRouteMode -quiet -routeWithTimingDriven false
+setNanoRouteMode -quiet -routeWithSiDriven false
+setNanoRouteMode -quiet -routeTopRoutingLayer 6
+routeDesign -globalDetail
+saveDesign eyeriss_top_powerroute_clk_filler.enc
+timeDesign -postRoute -pathReports -drvReports -slackReports -numPaths 400 -prefix eyeriss_top_postRoute -outDir timingReports
+clearClockDomains
+timeDesign -postRoute -hold -pathReports -slackReports -numPaths 400 -prefix eyeriss_top_postRoute -outDir timingReports
+saveDesign eyeriss_top_final_layout.enc
+saveNetlist -phys -includePowerGround eyeriss_top_phy.v -excludeLeafCell
+saveNetlist eyeriss_top_nophy.v -excludeLeafCell
+write_sdf eyeriss_top.sdf
+verify_drc -report cnn.drc.rpt -limit 1000
+verifyConnectivity -type all -error 1000 -warning 50
+verifyProcessAntenna -reportfile cnn.antenna.rpt -error 1000
+fit
+report_area
+report_timing
+report_area > area.rpt
+report_timing > timing.rpt
+optDesign -setup
+setAnalysisMode -analysisType onChipVariation -cppr both
+optDesign -postRoute -setup -hold
+report_timing > timing.rpt
+update_constraint_mode
+get_constraint_mode
+all_constraint_modes
+update_constraint_mode -name sdc -sdc_files {../eyeriss_top.sdc}
+report_timing > timing.rpt
+report_area > area.rpt
+setLayerPreference net -isVisible 0
+setLayerPreference power -isVisible 0
+setLayerPreference pgPower -isVisible 0
+setLayerPreference pgGround -isVisible 0
+setLayerPreference clock -isVisible 0
+setLayerPreference net -isVisible 1
+setLayerPreference power -isVisible 1
+setLayerPreference pgPower -isVisible 1
+setLayerPreference pgGround -isVisible 1
+setLayerPreference clock -isVisible 1
+setLayerPreference instanceCell -isVisible 0
+setLayerPreference inst -isVisible 0
+setLayerPreference block -isVisible 0
+setLayerPreference stdCell -isVisible 0
+setLayerPreference coverCell -isVisible 0
+setLayerPreference phyCell -isVisible 0
+setLayerPreference io -isVisible 0
+setLayerPreference areaIo -isVisible 0
+setLayerPreference blackBox -isVisible 0
+setLayerPreference instanceFunction -isVisible 0
+setLayerPreference flop -isVisible 0
+setLayerPreference pwrswt -isVisible 0
+setLayerPreference isolation -isVisible 0
+setLayerPreference shift -isVisible 0
+setLayerPreference funcother -isVisible 0
+setLayerPreference instanceStatus -isVisible 0
+setLayerPreference place -isVisible 0
+setLayerPreference fixed -isVisible 0
+setLayerPreference cover -isVisible 0
+setLayerPreference softfix -isVisible 0
+setLayerPreference unplace -isVisible 0
+setLayerPreference instanceCell -isVisible 1
+setLayerPreference inst -isVisible 1
+setLayerPreference block -isVisible 1
+setLayerPreference stdCell -isVisible 1
+setLayerPreference coverCell -isVisible 1
+setLayerPreference phyCell -isVisible 1
+setLayerPreference io -isVisible 1
+setLayerPreference areaIo -isVisible 1
+setLayerPreference blackBox -isVisible 1
+setLayerPreference instanceFunction -isVisible 1
+setLayerPreference flop -isVisible 1
+setLayerPreference pwrswt -isVisible 1
+setLayerPreference isolation -isVisible 1
+setLayerPreference shift -isVisible 1
+setLayerPreference funcother -isVisible 1
+setLayerPreference instanceStatus -isVisible 1
+setLayerPreference place -isVisible 1
+setLayerPreference fixed -isVisible 1
+setLayerPreference cover -isVisible 1
+setLayerPreference softfix -isVisible 1
+setLayerPreference unplace -isVisible 1
+setLayerPreference routeGuide -isVisible 0
+setLayerPreference ptnPinBlk -isVisible 0
+setLayerPreference ptnFeed -isVisible 0
+setLayerPreference routeGuide -isVisible 1
+setLayerPreference ptnPinBlk -isVisible 1
+setLayerPreference ptnFeed -isVisible 1
+setLayerPreference relFPlan -isVisible 0
+setLayerPreference sizeBlkg -isVisible 0
+setLayerPreference resizeFPLine1 -isVisible 0
+setLayerPreference resizeFPLine2 -isVisible 0
+setLayerPreference congTag -isVisible 0
+setLayerPreference ioSlot -isVisible 0
+setLayerPreference overlapMacro -isVisible 0
+setLayerPreference overlapGuide -isVisible 0
+setLayerPreference overlapBlk -isVisible 0
+setLayerPreference datapath -isVisible 0
+setLayerPreference relFPlan -isVisible 1
+setLayerPreference sizeBlkg -isVisible 1
+setLayerPreference resizeFPLine1 -isVisible 1
+setLayerPreference resizeFPLine2 -isVisible 1
+setLayerPreference congTag -isVisible 1
+setLayerPreference ioSlot -isVisible 1
+setLayerPreference overlapMacro -isVisible 1
+setLayerPreference overlapGuide -isVisible 1
+setLayerPreference overlapBlk -isVisible 1
+setLayerPreference datapath -isVisible 1
+setLayerPreference net -isVisible 0
+setLayerPreference power -isVisible 0
+setLayerPreference pgPower -isVisible 0
+setLayerPreference pgGround -isVisible 0
+setLayerPreference clock -isVisible 0
+setLayerPreference net -isVisible 1
+setLayerPreference power -isVisible 1
+setLayerPreference pgPower -isVisible 1
+setLayerPreference pgGround -isVisible 1
+setLayerPreference clock -isVisible 1
+setLayerPreference allM0 -isVisible 0
+setLayerPreference allM0 -isVisible 1
+setLayerPreference allM0 -isVisible 0
+setLayerPreference allM1 -isVisible 0
+setLayerPreference allM2Cont -isVisible 0
+setLayerPreference allM2 -isVisible 0
+setLayerPreference allM3Cont -isVisible 0
+setLayerPreference allM3 -isVisible 0
+setLayerPreference allM4Cont -isVisible 0
+setLayerPreference allM4 -isVisible 0
+setLayerPreference allM5Cont -isVisible 0
+setLayerPreference allM5 -isVisible 0
+setLayerPreference allM6Cont -isVisible 0
+setLayerPreference allM6 -isVisible 0
+setLayerPreference allM7Cont -isVisible 0
+setLayerPreference allM7 -isVisible 0
+setLayerPreference allM8Cont -isVisible 0
+setLayerPreference allM8 -isVisible 0
+setLayerPreference allM9Cont -isVisible 0
+setLayerPreference allM9 -isVisible 0
+setLayerPreference allM10Cont -isVisible 0
+setLayerPreference allM10 -isVisible 0
+setLayerPreference allM0 -isVisible 1
+setLayerPreference allM1 -isVisible 1
+setLayerPreference allM2Cont -isVisible 1
+setLayerPreference allM2 -isVisible 1
+setLayerPreference allM3Cont -isVisible 1
+setLayerPreference allM3 -isVisible 1
+setLayerPreference allM4Cont -isVisible 1
+setLayerPreference allM4 -isVisible 1
+setLayerPreference allM5Cont -isVisible 1
+setLayerPreference allM5 -isVisible 1
+setLayerPreference allM6Cont -isVisible 1
+setLayerPreference allM6 -isVisible 1
+setLayerPreference allM7Cont -isVisible 1
+setLayerPreference allM7 -isVisible 1
+setLayerPreference allM8Cont -isVisible 1
+setLayerPreference allM8 -isVisible 1
+setLayerPreference allM9Cont -isVisible 1
+setLayerPreference allM9 -isVisible 1
+setLayerPreference allM10Cont -isVisible 1
+setLayerPreference allM10 -isVisible 1
+setLayerPreference mGrid -isVisible 1
+setLayerPreference pGrid -isVisible 1
+setLayerPreference userGrid -isVisible 1
+setLayerPreference fGrid -isVisible 1
+setLayerPreference gcell -isVisible 1
+setLayerPreference trimGridObj -isVisible 1
+setLayerPreference mGrid -isVisible 0
+setLayerPreference pGrid -isVisible 0
+setLayerPreference userGrid -isVisible 0
+setLayerPreference fGrid -isVisible 0
+setLayerPreference gcell -isVisible 0
+setLayerPreference trimGridObj -isVisible 0
+setLayerPreference net -isVisible 0
+setLayerPreference power -isVisible 0
+fit
+setLayerPreference net -isVisible 1
+fit
+setLayerPreference power -isVisible 1
+setLayerPreference net -isVisible 0
+setLayerPreference net -isVisible 1
+fit
+setLayerPreference pinObj -isVisible 1
+setLayerPreference pinblock -isVisible 1
+setLayerPreference pinstdCell -isVisible 1
+setLayerPreference pinio -isVisible 1
+setLayerPreference piniopin -isVisible 1
+setLayerPreference pinother -isVisible 1
+setLayerPreference cellBlkgObj -isVisible 1
+setLayerPreference obsblock -isVisible 1
+setLayerPreference obsstdCell -isVisible 1
+setLayerPreference obsio -isVisible 1
+setLayerPreference obsother -isVisible 1
+setLayerPreference layoutObj -isVisible 1
+setLayerPreference pinObj -isVisible 0
+setLayerPreference pinblock -isVisible 0
+setLayerPreference pinstdCell -isVisible 0
+setLayerPreference pinio -isVisible 0
+setLayerPreference piniopin -isVisible 0
+setLayerPreference pinother -isVisible 0
+setLayerPreference cellBlkgObj -isVisible 0
+setLayerPreference obsblock -isVisible 0
+setLayerPreference obsstdCell -isVisible 0
+setLayerPreference obsio -isVisible 0
+setLayerPreference obsother -isVisible 0
+setLayerPreference layoutObj -isVisible 0
+setLayerPreference allM0 -isVisible 0
+setLayerPreference allM1 -isVisible 0
+setLayerPreference allM2Cont -isVisible 0
+setLayerPreference allM2 -isVisible 0
+setLayerPreference allM3Cont -isVisible 0
+setLayerPreference allM5 -isVisible 0
+setLayerPreference allM6Cont -isVisible 0
+setLayerPreference allM6 -isVisible 0
+setLayerPreference allM7Cont -isVisible 0
+setLayerPreference allM8Cont -isVisible 0
+setLayerPreference allM7 -isVisible 0
+setLayerPreference allM8 -isVisible 0
+setLayerPreference allM9Cont -isVisible 0
+setLayerPreference allM9 -isVisible 0
+setLayerPreference allM10Cont -isVisible 0
+setLayerPreference allM10 -isVisible 0
+fit
+setLayerPreference allM0 -isVisible 1
+setLayerPreference allM1 -isVisible 1
+setLayerPreference allM2Cont -isVisible 1
+setLayerPreference allM2 -isVisible 1
+setLayerPreference allM3Cont -isVisible 1
+setLayerPreference allM3 -isVisible 1
+setLayerPreference allM4Cont -isVisible 1
+setLayerPreference allM4 -isVisible 1
+setLayerPreference allM5Cont -isVisible 1
+setLayerPreference allM5 -isVisible 1
+setLayerPreference allM6Cont -isVisible 1
+setLayerPreference allM6 -isVisible 1
+setLayerPreference allM7Cont -isVisible 1
+setLayerPreference allM7 -isVisible 1
+setLayerPreference allM8Cont -isVisible 1
+setLayerPreference allM8 -isVisible 1
+setLayerPreference allM9Cont -isVisible 1
+setLayerPreference allM9 -isVisible 1
+setLayerPreference allM10Cont -isVisible 1
+setLayerPreference allM10 -isVisible 1
+setLayerPreference obstruct -isVisible 0
+setLayerPreference screen -isVisible 0
+setLayerPreference macroOnly -isVisible 0
+setLayerPreference layerBlk -isVisible 0
+setLayerPreference fillBlk -isVisible 0
+setLayerPreference trimBlk -isVisible 0
+setLayerPreference blockHalo -isVisible 0
+setLayerPreference routingHalo -isVisible 0
+setLayerPreference blkLink -isVisible 0
+setLayerPreference stdRow -isVisible 0
+setLayerPreference ioRow -isVisible 0
+setLayerPreference sitePattern -isVisible 0
+setLayerPreference macroSitePattern -isVisible 0
+setLayerPreference relFPlan -isVisible 0
+setLayerPreference sizeBlkg -isVisible 0
+setLayerPreference resizeFPLine1 -isVisible 0
+setLayerPreference resizeFPLine2 -isVisible 0
+setLayerPreference congTag -isVisible 0
+setLayerPreference ioSlot -isVisible 0
+setLayerPreference overlapMacro -isVisible 0
+setLayerPreference overlapGuide -isVisible 0
+setLayerPreference overlapBlk -isVisible 0
+setLayerPreference datapath -isVisible 0
+setLayerPreference routeGuide -isVisible 0
+setLayerPreference ptnPinBlk -isVisible 0
+setLayerPreference ptnFeed -isVisible 0
+setLayerPreference pwrdm -isVisible 0
+setLayerPreference netRect -isVisible 0
+setLayerPreference substrateNoise -isVisible 0
+setLayerPreference powerNet -isVisible 0
+setLayerPreference densityMap -isVisible 0
+setLayerPreference pinDensityMap -isVisible 0
+setLayerPreference timingMap -isVisible 0
+setLayerPreference powerDensity -isVisible 0
+setLayerPreference groupmain_Congestion -isVisible 0
+setLayerPreference routeCongest -isVisible 0
+setLayerPreference congChan -isVisible 0
+setLayerPreference net -isVisible 0
+setLayerPreference power -isVisible 0
+setLayerPreference pgPower -isVisible 0
+setLayerPreference pgGround -isVisible 0
+setLayerPreference clock -isVisible 0
+setLayerPreference shield -isVisible 0
+setLayerPreference unknowState -isVisible 0
+setLayerPreference metalFill -isVisible 0
+setLayerPreference whatIfShape -isVisible 0
+setLayerPreference wire -isVisible 0
+setLayerPreference via -isVisible 0
+setLayerPreference term -isVisible 0
+setLayerPreference violation -isVisible 0
+setLayerPreference busguide -isVisible 0
+setLayerPreference aggress -isVisible 0
+setLayerPreference text -isVisible 0
+setLayerPreference pinText -isVisible 0
+setLayerPreference flightLine -isVisible 0
+setLayerPreference portNum -isVisible 0
+setLayerPreference dpt -isVisible 0
+setLayerPreference term -isVisible 1
+setLayerPreference violation -isVisible 1
+setLayerPreference busguide -isVisible 1
+setLayerPreference aggress -isVisible 1
+setLayerPreference text -isVisible 1
+setLayerPreference pinText -isVisible 1
+setLayerPreference flightLine -isVisible 1
+setLayerPreference portNum -isVisible 1
+setLayerPreference dpt -isVisible 1
+setLayerPreference allM0 -isVisible 1
+setLayerPreference allM1 -isVisible 1
+setLayerPreference allM2Cont -isVisible 1
+setLayerPreference allM2 -isVisible 1
+setLayerPreference allM3Cont -isVisible 1
+setLayerPreference allM3 -isVisible 1
+setLayerPreference allM4Cont -isVisible 1
+setLayerPreference allM4 -isVisible 1
+setLayerPreference allM5Cont -isVisible 1
+setLayerPreference allM5 -isVisible 1
+setLayerPreference allM6Cont -isVisible 1
+setLayerPreference allM6 -isVisible 1
+setLayerPreference allM7Cont -isVisible 1
+setLayerPreference allM7 -isVisible 1
+setLayerPreference allM8Cont -isVisible 1
+setLayerPreference allM8 -isVisible 1
+setLayerPreference allM9Cont -isVisible 1
+setLayerPreference allM9 -isVisible 1
+setLayerPreference allM10Cont -isVisible 1
+setLayerPreference allM10 -isVisible 1
+setLayerPreference shield -isVisible 1
+setLayerPreference unknowState -isVisible 1
+setLayerPreference metalFill -isVisible 1
+setLayerPreference whatIfShape -isVisible 1
+setLayerPreference wire -isVisible 1
+setLayerPreference via -isVisible 1
+setLayerPreference net -isVisible 1
+setLayerPreference power -isVisible 1
+setLayerPreference pgPower -isVisible 1
+setLayerPreference pgGround -isVisible 1
+setLayerPreference clock -isVisible 1
+setLayerPreference densityMap -isVisible 1
+setLayerPreference pinDensityMap -isVisible 1
+setLayerPreference timingMap -isVisible 1
+setLayerPreference powerDensity -isVisible 1
+setLayerPreference groupmain_Congestion -isVisible 1
+setLayerPreference routeCongest -isVisible 1
+setLayerPreference congChan -isVisible 1
+::fit main.layout.win
+setLayerPreference densityMap -isVisible 0
+setLayerPreference pinDensityMap -isVisible 0
+setLayerPreference timingMap -isVisible 0
+setLayerPreference powerDensity -isVisible 0
+setLayerPreference groupmain_Congestion -isVisible 0
+setLayerPreference routeCongest -isVisible 0
+setLayerPreference congChan -isVisible 0
+setLayerPreference pwrdm -isVisible 1
+setLayerPreference netRect -isVisible 1
+setLayerPreference substrateNoise -isVisible 1
+setLayerPreference powerNet -isVisible 1
+setLayerPreference routeGuide -isVisible 1
+setLayerPreference ptnPinBlk -isVisible 1
+setLayerPreference ptnFeed -isVisible 1
+setLayerPreference relFPlan -isVisible 1
+setLayerPreference sizeBlkg -isVisible 1
+setLayerPreference resizeFPLine1 -isVisible 1
+setLayerPreference resizeFPLine2 -isVisible 1
+setLayerPreference congTag -isVisible 1
+setLayerPreference ioSlot -isVisible 1
+setLayerPreference overlapMacro -isVisible 1
+setLayerPreference overlapGuide -isVisible 1
+setLayerPreference overlapBlk -isVisible 1
+setLayerPreference datapath -isVisible 1
+setLayerPreference stdRow -isVisible 1
+setLayerPreference ioRow -isVisible 1
+setLayerPreference sitePattern -isVisible 1
+setLayerPreference macroSitePattern -isVisible 1
+setLayerPreference obstruct -isVisible 1
+setLayerPreference screen -isVisible 1
+setLayerPreference macroOnly -isVisible 1
+setLayerPreference layerBlk -isVisible 1
+setLayerPreference fillBlk -isVisible 1
+setLayerPreference trimBlk -isVisible 1
+setLayerPreference blockHalo -isVisible 1
+setLayerPreference routingHalo -isVisible 1
+setLayerPreference blkLink -isVisible 1
+setLayerPreference pinObj -isVisible 1
+setLayerPreference pinblock -isVisible 1
+setLayerPreference pinstdCell -isVisible 1
+setLayerPreference pinio -isVisible 1
+setLayerPreference piniopin -isVisible 1
+setLayerPreference pinother -isVisible 1
+setLayerPreference cellBlkgObj -isVisible 1
+setLayerPreference obsblock -isVisible 1
+setLayerPreference obsstdCell -isVisible 1
+setLayerPreference obsio -isVisible 1
+setLayerPreference obsother -isVisible 1
+setLayerPreference layoutObj -isVisible 1
+setLayerPreference hinst -isSelectable 0
+setLayerPreference hinst -isSelectable 1
+fit
+set_power_analysis_mode -reset
+set_power_analysis_mode -method static -corner max -create_binary_db true -write_static_currents true -honor_negative_energy true -ignore_control_signals true
+set_power_output_dir -reset
+set_power_output_dir ./
+set_default_switching_activity -reset
+set_default_switching_activity -input_activity 0.2 -period 10.0
+read_activity_file -reset
+set_power -reset
+set_powerup_analysis -reset
+set_dynamic_power_simulation -reset
+report_power -rail_analysis_format VS -outfile .//eyeriss_top.rpt
+setLayerPreference net -isSelectable 0
+setLayerPreference power -isSelectable 0
+setLayerPreference pgPower -isSelectable 0
+setLayerPreference pgGround -isSelectable 0
+setLayerPreference clock -isSelectable 0
+setLayerPreference net -isSelectable 1
+setLayerPreference power -isSelectable 1
+setLayerPreference pgPower -isSelectable 1
+setLayerPreference pgGround -isSelectable 1
+setLayerPreference clock -isSelectable 1
+setLayerPreference net -isVisible 0
+setLayerPreference power -isVisible 0
+setLayerPreference pgPower -isVisible 0
+setLayerPreference pgGround -isVisible 0
+setLayerPreference clock -isVisible 0
+setLayerPreference shield -isVisible 0
+setLayerPreference unknowState -isVisible 0
+setLayerPreference metalFill -isVisible 0
+setLayerPreference whatIfShape -isVisible 0
+setLayerPreference wire -isVisible 0
+setLayerPreference via -isVisible 0
+fit
+setLayerPreference pinObj -isVisible 0
+setLayerPreference pinblock -isVisible 0
+setLayerPreference pinstdCell -isVisible 0
+setLayerPreference pinio -isVisible 0
+setLayerPreference piniopin -isVisible 0
+setLayerPreference pinother -isVisible 0
+setLayerPreference cellBlkgObj -isVisible 0
+setLayerPreference obsblock -isVisible 0
+setLayerPreference obsstdCell -isVisible 0
+setLayerPreference obsio -isVisible 0
+setLayerPreference obsother -isVisible 0
+setLayerPreference layoutObj -isVisible 0
+setLayerPreference instanceCell -isVisible 0
+setLayerPreference inst -isVisible 0
+setLayerPreference block -isVisible 0
+setLayerPreference stdCell -isVisible 0
+setLayerPreference coverCell -isVisible 0
+setLayerPreference phyCell -isVisible 0
+setLayerPreference io -isVisible 0
+setLayerPreference areaIo -isVisible 0
+setLayerPreference blackBox -isVisible 0
+setLayerPreference instanceFunction -isVisible 0
+setLayerPreference flop -isVisible 0
+setLayerPreference pwrswt -isVisible 0
+setLayerPreference isolation -isVisible 0
+setLayerPreference shift -isVisible 0
+setLayerPreference funcother -isVisible 0
+setLayerPreference instanceStatus -isVisible 0
+setLayerPreference place -isVisible 0
+setLayerPreference fixed -isVisible 0
+setLayerPreference cover -isVisible 0
+setLayerPreference softfix -isVisible 0
+setLayerPreference unplace -isVisible 0
+fit
+fit
+setLayerPreference hinst -isVisible 0
+setLayerPreference guide -isVisible 0
+setLayerPreference fence -isVisible 0
+setLayerPreference region -isVisible 0
+setLayerPreference partition -isVisible 0
+setLayerPreference hinst -isVisible 1
+setLayerPreference guide -isVisible 1
+setLayerPreference fence -isVisible 1
+setLayerPreference region -isVisible 1
+setLayerPreference partition -isVisible 1
+setLayerPreference instanceCell -isVisible 1
+setLayerPreference inst -isVisible 1
+setLayerPreference block -isVisible 1
+setLayerPreference stdCell -isVisible 1
+setLayerPreference coverCell -isVisible 1
+setLayerPreference phyCell -isVisible 1
+setLayerPreference io -isVisible 1
+setLayerPreference areaIo -isVisible 1
+setLayerPreference blackBox -isVisible 1
+setLayerPreference instanceFunction -isVisible 1
+setLayerPreference flop -isVisible 1
+setLayerPreference pwrswt -isVisible 1
+setLayerPreference isolation -isVisible 1
+setLayerPreference shift -isVisible 1
+setLayerPreference funcother -isVisible 1
+setLayerPreference instanceStatus -isVisible 1
+setLayerPreference place -isVisible 1
+setLayerPreference fixed -isVisible 1
+setLayerPreference cover -isVisible 1
+setLayerPreference softfix -isVisible 1
+setLayerPreference unplace -isVisible 1
+fit
+setLayerPreference net -isVisible 1
+setLayerPreference power -isVisible 1
+setLayerPreference pgPower -isVisible 1
+setLayerPreference pgGround -isVisible 1
+setLayerPreference clock -isVisible 1
+setLayerPreference shield -isVisible 1
+setLayerPreference unknowState -isVisible 1
+setLayerPreference metalFill -isVisible 1
+setLayerPreference whatIfShape -isVisible 1
+setLayerPreference wire -isVisible 1
+setLayerPreference via -isVisible 1
