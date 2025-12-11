@@ -18,6 +18,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Intermediate files
+.nfs*
+
 # Distribution / packaging
 .Python
 build/
