@@ -67,6 +67,8 @@ if __name__ == "__main__":
                     
                     # 40-bit accumulator for each output pixel
                     acc = 0 
+                    if y == 3 and x == 6:
+                        print(f"y: {y}, x: {x}")
                     
                     # Iterate overall input channels (1)
                     for c in range(C_in):
@@ -81,9 +83,16 @@ if __name__ == "__main__":
                                 
                                 # Perform multiply-accumulate
                                 acc = quantized_mac(acc, act_val, w_val)
+                                if y == 3 and x == 6:
+                                    print(f"act_val: {act_val}, w_val: {w_val}")
+                                    print(f"acc: {acc}")
+                                    
+                            acc = finalize_pixel(acc) << FRAC_BITS
                     
                     # Finalize the pixel (scale, truncate, saturate)
-                    golden_output[n, k, y, x] = finalize_pixel(acc)
+                    golden_output[n, k, y, x] = acc >> FRAC_BITS
+                    if y == 3 and x == 6:
+                        print(f"pixel: {golden_output[n, k, y, x]}")
 
     # Save golden output
     np.save("mnist_npy/golden_output.npy", golden_output)

@@ -78,8 +78,8 @@ module pe #(
     end
 
     // Partial sum register definition
-    logic [DATA_WIDTH_C-1:0] psum_r = 'b0;
-    logic [DATA_WIDTH_C-1:0] psum_c;
+    logic signed [DATA_WIDTH_C*2-1:0] psum_r = 'b0;
+    logic signed [DATA_WIDTH_C*2-1:0] psum_c;
     logic psum_vld_r = 'b0;
     logic psum_vld_c;
     // Counter to keep track of number of MAC operations
@@ -113,7 +113,7 @@ module pe #(
         psum_vld_c = 0;
 
         // Output signal assignments
-        psum_o = psum_r;
+        psum_o = psum_r >>> G_BOT_BITS;
         psum_vld_o = psum_vld_r;
 
         case (state_r)
@@ -123,23 +123,23 @@ module pe #(
                 // Check if the first psum can be calculated yet
                 if (&ifmap_row_r) begin
                     state_c = CALC_S;
-                    psum_c = psum_r + ifmap_r[count_r] * weight_r[count_r];
+                    psum_c = psum_r + $signed(ifmap_r[count_r]) * $signed(weight_r[count_r]);
                     count_c = count_r + 1;
                 end
             end
             CALC_S : begin
-                psum_c = psum_r + ifmap_r[count_r] * weight_r[count_r];
+                psum_c = psum_r + $signed(ifmap_r[count_r]) * $signed(weight_r[count_r]);
                 count_c = count_r + 1;
                 // If calculations complete, accumulate
                 if (count_r == G_KERNEL_SIZE) begin
                     state_c = ACUM_S;
                     count_c = 0;
                     psum_vld_c = 1;
-                    psum_c = psum_i + psum_r;
+                    psum_c = psum_r + ($signed(psum_i) <<< G_BOT_BITS);
                 end
             end
             ACUM_S : begin
-                psum_c = ifmap_r[count_r] * weight_r[count_r];
+                psum_c = $signed(ifmap_r[count_r]) * $signed(weight_r[count_r]);
                 count_c = count_r + 1;
                 if (&ifmap_row_r || ~|ifmap_row_r) begin
                     state_c = CALC_S;

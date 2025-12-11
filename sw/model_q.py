@@ -30,12 +30,16 @@ if __name__ == "__main__":
     model.eval()
 
     # Extract float32 weights from the first convolutional layer
-    fp32_weights = model.conv1.weight.data.detach().numpy()
+    all_fp32_weights = model.conv1.weight.data.detach().numpy()
     
     print(f"\n--- Pre-Quantization Analysis ---")
-    print(f"FP32 Weight Range: Min={np.min(fp32_weights):.4f}, Max={np.max(fp32_weights):.4f}")
+    print(f"FP32 Weight Range: Min={np.min(all_fp32_weights):.4f}, Max={np.max(all_fp32_weights):.4f}")
     print(f"Q{INT_BITS}.{FRAC_BITS} Range: Min={Q_MIN/SCALE}, Max={Q_MAX/SCALE}")
     print(f"---------------------------------\n")
+
+    # Extract ONLY the first kernel (Filter #0)
+    # Result shape: (1, 1, 5, 5)
+    fp32_weights = all_fp32_weights[0:1]
 
     # Quantize all weights
     quantize_v = np.vectorize(float_to_fixed)
