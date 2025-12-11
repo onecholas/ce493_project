@@ -1,0 +1,26 @@
+# Cadence Genus(TM) Synthesis Solution, Version 18.14-s037_1, built Mar 27 2019 12:19:21
+
+# Date: Tue Dec 09 12:49:50 2025
+# Host: joker.ece.northwestern.edu (x86_64 w/Linux 4.18.0-553.89.1.el8_10.x86_64) (8cores*8cpus*1physical cpu*Intel(R) Core(TM) i7-9700 CPU @ 3.00GHz 12288KB)
+# OS:   Red Hat Enterprise Linux release 8.10 (Ootpa)
+
+read_hdl -sv ../rtl/buf_array.sv
+read_hdl -sv ../rtl/buffer.sv
+read_hdl -sv ../rtl/eyeriss_top.sv
+read_hdl -sv ../rtl/fifo.sv
+read_hdl -sv ../rtl/noc.sv
+read_hdl -sv ../rtl/pe_array.sv
+read_hdl -sv ../rtl/pe.sv
+set_db library /vol/ece303/genus_tutorial/NangateOpenCellLibrary_typical.lib
+set_db lef_library /vol/ece303/genus_tutorial/NangateOpenCellLibrary.lef
+elaborate
+current_design eyeriss_top
+read_sdc ../eyeriss_top.sdc
+syn_generic
+syn_map
+syn_opt
+report_timing > timing.rpt
+report_area > area.rpt
+write_hdl
+write_hdl -language
+write_hdl > eyeriss_top_syn.v
